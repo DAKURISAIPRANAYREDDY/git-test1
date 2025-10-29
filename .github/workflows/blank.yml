@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: pranay_test1
+name: pranay_test2
 
 # Controls when the workflow will run
 on:
@@ -27,6 +27,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: my first exp
-        run: echo Hello, pranay!
+        run: ech Hello, pranay!
 
       
