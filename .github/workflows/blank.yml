@@ -29,6 +29,6 @@ jobs:
       - name: my first exp
         run: echo Hello, pranay!  
       - name: my second exp
-        run: apt install python3-pip
+        run: sudo apt install python3-pip
 
       
