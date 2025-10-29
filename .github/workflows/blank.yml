@@ -28,6 +28,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: my first exp
         run: echo Hello, pranay!  
+      - name: my second exp
         run: apt install python3-pip
 
       
