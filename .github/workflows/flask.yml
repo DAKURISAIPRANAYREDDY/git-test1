@@ -1,18 +1,18 @@
-name: Flask App Test
+name: Test Flask App
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
 
 jobs:
-  build:
+  test-flask:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    - name: Checkout repo
+      uses: actions/checkout@v3
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -21,15 +21,20 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
+        python -m pip install --upgrade pip
+        pip install flask requests
 
-    - name: Run Flask app and test endpoints
+    - name: Run Flask app and test
       run: |
-        python sum.py &
-        sleep 5
+        python sum.py &       # Run Flask in the background
+        FLASK_PID=$!
+        echo "Waiting for Flask to start..."
+        sleep 5               # wait for server to be ready
+
         echo "Testing root endpoint..."
-        curl "http://127.0.0.1:5000/"
+        curl http://127.0.0.1:5000/
+
         echo "Testing addition endpoint..."
-        curl "http://127.0.0.1:5000/add?a=5&b=3"
+        curl http://127.0.0.1:5000/add?a=5&b=3
 
-
+        kill $FLASK_PID       # stop Flask after tests
