@@ -10,12 +10,12 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3   # ✅ makes sure repo files are downloaded
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11   # ✅ Correct version
+          python-version: '3.10'
 
       - name: Install dependencies
         run: |
@@ -23,7 +23,9 @@ jobs:
 
       - name: Run Flask app
         run: |
+          ls -la   # ✅ shows files in current folder
           python app.py &
           sleep 5
           curl "http://127.0.0.1:5000/"
+
 
