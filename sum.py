@@ -14,7 +14,7 @@ def add():
         return str(a + b)
     except ValueError:
         return "Invalid numbers", 400
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
+        
+if __name__ == '__main__':
+    # debug=False prevents auto-restart in CI
+    app.run(debug=False, host='127.0.0.1', port=5000)
